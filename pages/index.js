@@ -1,16 +1,10 @@
 import Head from "next/head";
+import Layout from "../Components/Layout";
 
 export default function Home() {
   return (
-    <div>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main>
-        <h1>Welcome to the next js</h1>
-      </main>
-    </div>
+    <Layout title="POKODEX">
+      <h1>The NEXT JS Pokodex</h1>
+    </Layout>
   );
 }

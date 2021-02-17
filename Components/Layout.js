@@ -1,13 +1,16 @@
 import Head from "next/head";
 import React from "react";
 
-export default function Layout({ title }) {
+export default function Layout({ title, children }) {
   return (
-    <div>
+    <div className="bg-gray-300">
       <Head>
-        <title>Create Next App</title>
+        <title>{title}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <main className="container mx-auto max-w-xl pt-8 min-h-screen">
+        {children}
+      </main>
     </div>
   );
 }
