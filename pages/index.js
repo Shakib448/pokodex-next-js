@@ -1,15 +1,24 @@
 import axios from "axios";
 import Layout from "../Components/Layout";
+import Link from "next/Link";
 
-const Home = () => {
+const Home = ({ pokemon }) => {
   return (
     <Layout title="POKODEX">
       <h1 className="text-4xl mb-8 text-center"> NEXT JS Pokedex</h1>
+      <ul>
+        {pokemon.map((pokeman, index) => (
+          <li key={index}>
+            <Link href={`/pokemon?id=${index + 1}`}></Link>
+          </li>
+        ))}
+      </ul>
     </Layout>
   );
 };
+export default Home;
 
-export const getStaticProps = async (context) => {
+export const getStaticProps = async () => {
   try {
     const {
       data: { results },
@@ -19,22 +28,10 @@ export const getStaticProps = async (context) => {
       const image = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${paddedIndex}.png`;
       return { ...result, image };
     });
+    return {
+      props: { pokemon },
+    };
   } catch (error) {
     console.error(error);
   }
-  return {
-    props: { pokemon },
-  };
 };
-
-// export async function getStaticProps(context) {
-//   try {
-//     const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=150");
-//     const { results } = await res.json();
-//     console.log(results);
-//   } catch (error) {}
-//   return {
-//     props: {},
-//   };
-// }
-export default Home;
