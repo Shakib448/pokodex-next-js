@@ -4,37 +4,21 @@ import Link from "next/Link";
 import axios from "axios";
 
 const pokemon = ({ pokeman }) => {
-  console.log(pokeman);
   return <Layout></Layout>;
 };
 
 export default pokemon;
 
-// export async function getServerSideProps({ query }) {
-//   const id = query.id;
-//   try {
-//     const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-//     const pokeman = await res.json();
-//     const paddedId = ("00" + id).slice(-3);
-//     pokeman.image = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${paddedId}.png`;
-//     return {
-//       props: { pokeman },
-//     };
-//   } catch (err) {
-//     console.error(err);
-//   }
-// }
-
 export const getServerSideProps = async ({ query }) => {
   const id = query.id;
   try {
     const { data } = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
-    const pokemon = data;
+    const pokeman = data;
     const paddedIndex = ("00" + id).slice(-3);
     const image = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${paddedIndex}.png`;
-    pokemon.image = image;
+    pokeman.image = image;
     return {
-      props: { pokemon },
+      props: { pokeman },
     };
   } catch (error) {
     console.error(error);
