@@ -1,6 +1,6 @@
 import axios from "axios";
 import Layout from "../Components/Layout";
-import Link from "next/Link";
+import Link from "next/link";
 
 const Home = ({ pokemon }) => {
   return (
