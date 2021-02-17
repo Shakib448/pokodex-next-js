@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React from "react";
 
-export default function Layout({ title, children }) {
+const Layout = ({ title, children }) => {
   return (
     <div className="bg-gray-300">
       <Head>
@@ -13,4 +13,6 @@ export default function Layout({ title, children }) {
       </main>
     </div>
   );
-}
+};
+
+export default Layout;
