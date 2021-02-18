@@ -5,7 +5,7 @@ import React from "react";
 const useStyles = makeStyles((theme) => ({
   bgColor: {
     backgroundColor: theme.palette.primary.dark,
-    height: "100vh",
+    height: "100%",
   },
 }));
 

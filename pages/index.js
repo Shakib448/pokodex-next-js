@@ -1,9 +1,32 @@
 import axios from "axios";
 import Layout from "../Components/Layout";
 import Link from "next/link";
-import { Box, CardMedia, Grid, List, Typography } from "@material-ui/core";
+import {
+  Box,
+  CardMedia,
+  Grid,
+  List,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
+
+const useStyles = makeStyles({
+  listing: {
+    backgroundColor: "#fff",
+    display: "flex",
+    margin: "5px 0",
+    textTransform: "uppercase",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: "0 20px",
+    borderRadius: "25px",
+    cursor: "pointer",
+  },
+  img: { width: 200 },
+});
 
 const Home = ({ pokemon }) => {
+  const classes = useStyles();
   return (
     <Layout title="POKODEX">
       <Grid container justify="center">
@@ -13,21 +36,20 @@ const Home = ({ pokemon }) => {
         {pokemon.map((pokeman, index) => (
           <List component="li" key={index}>
             <Link href={`/pokemon?id=${index + 1}`}>
-              <Box
-                component="div"
-                className="border p-4 border-gray my-2 capitalize flex items-center text-lg bg-gray-200 rounded-md"
-              >
+              <Box component="div" className={classes.listing}>
                 <CardMedia
                   component="img"
-                  className="w-20 h-20 mr-3"
+                  className={classes.img}
                   image={pokeman.image}
                   alt={pokeman.name}
                 />
 
-                <span className="mr-2 font-bold">
+                <Typography variant="h6">
                   {" "}
-                  {index + 1} . {pokeman.name}
-                </span>
+                  <Box fontWeight="fontWeightBold">
+                    {index + 1} {pokeman.name}
+                  </Box>
+                </Typography>
               </Box>
             </Link>
           </List>
