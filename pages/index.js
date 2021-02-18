@@ -1,31 +1,60 @@
 import axios from "axios";
 import Layout from "../Components/Layout";
 import Link from "next/link";
+import {
+  Box,
+  CardMedia,
+  Grid,
+  List,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
+
+const useStyles = makeStyles({
+  listing: {
+    backgroundColor: "#fff",
+    display: "flex",
+    margin: "5px 0",
+    textTransform: "uppercase",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: "0 20px",
+    borderRadius: "25px",
+    cursor: "pointer",
+  },
+  img: { width: 200 },
+});
 
 const Home = ({ pokemon }) => {
+  const classes = useStyles();
   return (
     <Layout title="POKODEX">
-      <h1 className="text-4xl mb-8 text-center"> NEXT JS Pokedex</h1>
-      <ul>
+      <Grid container justify="center">
+        <Typography variant="h4"> NEXT JS Pokedex</Typography>
+      </Grid>
+      <List component="ul">
         {pokemon.map((pokeman, index) => (
-          <li key={index}>
+          <List component="li" key={index}>
             <Link href={`/pokemon?id=${index + 1}`}>
-              <a className="border p-4 border-gray my-2 capitalize flex items-center text-lg bg-gray-200 rounded-md">
-                <img
-                  className="w-20 h-20 mr-3"
-                  src={pokeman.image}
+              <Box component="div" className={classes.listing}>
+                <CardMedia
+                  component="img"
+                  className={classes.img}
+                  image={pokeman.image}
                   alt={pokeman.name}
                 />
 
-                <span className="mr-2 font-bold">
+                <Typography variant="h6">
                   {" "}
-                  {index + 1} {pokeman.name}
-                </span>
-              </a>
+                  <Box fontWeight="fontWeightBold">
+                    {index + 1} {pokeman.name}
+                  </Box>
+                </Typography>
+              </Box>
             </Link>
-          </li>
+          </List>
         ))}
-      </ul>
+      </List>
     </Layout>
   );
 };
