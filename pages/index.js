@@ -1,31 +1,38 @@
 import axios from "axios";
 import Layout from "../Components/Layout";
 import Link from "next/link";
+import { Box, CardMedia, Grid, List, Typography } from "@material-ui/core";
 
 const Home = ({ pokemon }) => {
   return (
     <Layout title="POKODEX">
-      <h1 className="text-4xl mb-8 text-center"> NEXT JS Pokedex</h1>
-      <ul>
+      <Grid container justify="center">
+        <Typography variant="h4"> NEXT JS Pokedex</Typography>
+      </Grid>
+      <List component="ul">
         {pokemon.map((pokeman, index) => (
-          <li key={index}>
+          <List component="li" key={index}>
             <Link href={`/pokemon?id=${index + 1}`}>
-              <a className="border p-4 border-gray my-2 capitalize flex items-center text-lg bg-gray-200 rounded-md">
-                <img
+              <Box
+                component="div"
+                className="border p-4 border-gray my-2 capitalize flex items-center text-lg bg-gray-200 rounded-md"
+              >
+                <CardMedia
+                  component="img"
                   className="w-20 h-20 mr-3"
-                  src={pokeman.image}
+                  image={pokeman.image}
                   alt={pokeman.name}
                 />
 
                 <span className="mr-2 font-bold">
                   {" "}
-                  {index + 1} {pokeman.name}
+                  {index + 1} . {pokeman.name}
                 </span>
-              </a>
+              </Box>
             </Link>
-          </li>
+          </List>
         ))}
-      </ul>
+      </List>
     </Layout>
   );
 };
