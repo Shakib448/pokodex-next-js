@@ -17,19 +17,18 @@ const pokemon = ({ pokeman }) => {
       <Typography variant="body1" component="p">
         <Box fontWeight="fontWeightBold">Height: {pokeman.height}</Box>
       </Typography>
-      <Typography variant="h5">
+      <Typography variant="h5" style={{ marginBottom: "5px" }}>
         <Box fontWeight="fontWeightBold"> Types</Box>
       </Typography>
       {pokeman.types.map((type, index) => (
         <Typography variant="body1" component="p" key={index}>
-          {" "}
           {type.type.name}
         </Typography>
       ))}
       <Grid container justify="center">
-        <Typography variant="h5" type="submit">
+        <Typography variant="h5" style={{ cursor: "pointer" }}>
           <Link href="/">
-            <Box fontWeight="fontWeightBold">Home</Box>
+            <Box fontWeight="fontWeightBold ">Home</Box>
           </Link>
         </Typography>
       </Grid>
